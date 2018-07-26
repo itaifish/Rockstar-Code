@@ -1,0 +1,89 @@
+Floor takes Value
+	Put Modulus Old taking Value,1 into Decimal
+	Give back Value without Decimal
+(END)
+Absolute Value takes Value
+	If Value is less than 0
+		Put 0 without 1 into Negative One
+		Put Value times Negative One into Value
+	(END)
+	Give back Value
+(END)
+Modulus Old takes Value and Divisor
+	While Value is as high as Divisor
+		Put Value minus Divisor into Value
+	(END)
+	Give back Value
+(END)
+Modulus takes Value and Divisor
+	Put Value over Divisor into Division Value
+	Put Division Value minus Floor taking Division Value into Decimal Difference
+	Give back Decimal Difference times Divisor
+(END)
+Is Even takes Value
+	If Modulus taking Value,2 is 0
+		Give back true
+	(END)
+	Give back false
+(End)
+Power takes Base and Exponent
+	If Exponent is 0
+		Give back 1
+	(END)
+	If Exponent is 1
+		Give back Base
+	(END)
+	If Exponent is 2
+		Give back Base times Base
+	(END)
+	If Is Even taking Exponent
+		Put Power taking Base,2 into New Base
+		Put Exponent over 2 into New Exponent
+		Give back Power taking New Base, New Exponent 
+	(END)
+	Put Exponent minus 1 into New Exponent
+	Give back Base times Power taking Base, New Exponent
+(END)
+Square Root Small takes Value and Precision (Only converges on numbers between 0 and 2)
+	Put Value without 1 into Xx
+	Put 0 into Nn
+	Put 0 without 1 into Negative One
+	Put 0 into Answer
+	While Nn is less than Precision
+		Put Nn times 2 into TwoN
+		Put Power taking Negative One,Nn into Numerator Part One
+		Put Factorial taking TwoN into Numerator Part Two
+		Put Numerator Part One times Numerator Part Two into Numerator
+		Put 1 without TwoN into Denominator Part One
+		Put Factorial taking Nn into Denominator Part Two
+		Put Power taking Denominator Part Two,2 into Denominator Part Two
+		Put Power taking 4,Nn into Denominator Part Three
+		Put Denominator Part One times Denominator Part Two into Denominator
+		Put Denominator times Denominator Part Three into Denominator
+		Put Numerator over Denominator into Fraction
+		Put Power taking Xx,Nn into ExponentV
+		Put ExponentV times Fraction into ToSum
+		Put Answer plus  ToSum into Answer
+		Build Nn up
+	(END)
+	Give back Answer
+(END)
+Factorial takes Value
+	Put 1 into Result
+	While Value is greater than 0
+		Put Result times Value into Result
+		Knock Value down
+	(END)
+	Give back Result
+(END)
+Put 0 without 3.16 into Test
+Shout "Starting Value: " plus Test
+Put Absolute Value taking Test into Test
+Shout "Abs(): " plus Test
+Shout "Floor(): " plus Floor taking Test
+Shout "Modulus(30,8): " plus Modulus taking 30,8
+Shout "Power(3,14): " plus Power taking 3,14
+Put Square Root Small taking 0.43,40 into Root
+Shout "Sqrt(0.43): " plus Root
+Shout "Root ^ 2: " plus Power taking Root,2
+Shout "4!: " plus Factorial taking 4
